@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 if os.path.isfile('env.py'):
     import env
@@ -28,7 +29,8 @@ SECRET_KEY = 'django-insecure-a+!b8_w3r*@9(+ff96=jr%82ey131vw=9795ao!y$6mc%uh4q)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-kevn14-primepulse-sqth4xnygz6.ws-eu101.gitpod.io']
+ALLOWED_HOSTS = ['prime-pulse.herokuapp.com', 'localhost']
+# 8000-kevn14-primepulse-sqth4xnygz6.ws-eu101.gitpod.io
 
 
 # Application definition
@@ -102,11 +104,14 @@ WSGI_APPLICATION = 'primepulse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
