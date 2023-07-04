@@ -18,7 +18,7 @@ if os.path.isfile('env.py'):
     import env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates/')
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -29,8 +29,7 @@ SECRET_KEY = 'django-insecure-a+!b8_w3r*@9(+ff96=jr%82ey131vw=9795ao!y$6mc%uh4q)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['prime-pulse.herokuapp.com', 'localhost']
-# 8000-kevn14-primepulse-sqth4xnygz6.ws-eu101.gitpod.io
+ALLOWED_HOSTS = ['8000-kevn14-primepulse-sqth4xnygz6.ws-eu101.gitpod.io']
 
 
 # Application definition
@@ -48,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'cloudinary',
+    'category',
 
 ]
 
@@ -154,14 +154,16 @@ MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-# STATIC_ROOT = BASE_DIR / 'static'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_DIRS = [
 # 'primepulse/static',
 # ]
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = ['primepulse/static',
+                    os.path.join(BASE_DIR, 'staticfiles')
+                    ]
 # 'primepulse/static',
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
